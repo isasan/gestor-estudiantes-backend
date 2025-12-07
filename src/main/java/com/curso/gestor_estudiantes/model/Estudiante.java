@@ -1,10 +1,19 @@
 package com.curso.gestor_estudiantes.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+
 public class Estudiante {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String email;
-    private int edad;
+    private Integer edad;
 
     public Estudiante() {
     }
