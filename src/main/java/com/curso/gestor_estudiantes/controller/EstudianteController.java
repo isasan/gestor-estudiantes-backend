@@ -12,35 +12,52 @@ import java.util.List;
 public class EstudianteController {
     private final EstudianteService estudianteService;
 
-    public EstudianteController(EstudianteService estudianteService){
+    public EstudianteController(EstudianteService estudianteService) {
         this.estudianteService = estudianteService;
 
     }
 
     //Get listar
     @GetMapping
-    public List<Estudiante> listar(){
+    public List<Estudiante> listar() {
         return estudianteService.obtenerTodos();
 
     }
+
     //Post crear
     @PostMapping
-    public Estudiante crear(@RequestBody Estudiante estudiante){
+    public Estudiante crear(@RequestBody Estudiante estudiante) {
         return estudianteService.crear(estudiante);
     }
+
     //Get buscar por ID
     @GetMapping("/{id}")
-    public Estudiante obtener(@PathVariable Long id){
+    public Estudiante obtener(@PathVariable Long id) {
         return estudianteService.obtenerPorId(id);
     }
+
     //Borrar por ID
     @DeleteMapping("/{id}")
-    public String eliminar(@PathVariable Long id){
+    public String eliminar(@PathVariable Long id) {
         boolean eliminado = estudianteService.eliminar(id);
-        if(eliminado){
+        if (eliminado) {
             return "Estudiante con ID " + id + "  borrado de la lista";
-        }else{
-            return  "Estudiante con ID " + id + " no se encontró en la lista";
+        } else {
+            return "Estudiante con ID " + id + " no se encontró en la lista";
+        }
+    }
+
+    //Actualizar por ID
+    @PutMapping("/{id}")
+    public Estudiante actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante estudianteActualizado) {
+        Estudiante estudianteExistente = estudianteService.obtenerPorId(id);
+        if (estudianteExistente != null) {
+            estudianteExistente.setNombre(estudianteActualizado.getNombre());
+            estudianteExistente.setEdad(estudianteActualizado.getEdad());
+            estudianteExistente.setEmail(estudianteActualizado.getEmail());
+            return estudianteExistente;
+        } else {
+            return null;
         }
     }
 }
