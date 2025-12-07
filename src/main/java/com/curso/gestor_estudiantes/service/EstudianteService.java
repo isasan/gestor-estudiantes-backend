@@ -47,4 +47,9 @@ public class EstudianteService {
 
         return repository.save(existente);
     }
+
+
+    public List<Estudiante> buscarPorNombre(String nombre) {
+        return repository.findByNombreIgnoreCaseContaining(nombre);
+    }
 }

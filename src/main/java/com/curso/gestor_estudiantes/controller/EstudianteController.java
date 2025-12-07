@@ -48,21 +48,13 @@ public class EstudianteController {
     }
 
     //Actualizar por ID
-//    @PutMapping("/{id}")
-//    public Estudiante actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante estudianteActualizado) {
-//        Estudiante estudianteExistente = estudianteService.obtenerPorId(id);
-//        if (estudianteExistente != null) {
-//            estudianteExistente.setNombre(estudianteActualizado.getNombre());
-//            estudianteExistente.setEmail(estudianteActualizado.getEmail());
-//            estudianteExistente.setEdad(estudianteActualizado.getEdad());
-//            return estudianteExistente;
-//        } else {
-//            return null;
-//        }
-//    }
-
     @PutMapping("/{id}")
     public Estudiante actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante estudianteActualizado) {
         return estudianteService.actualizar(id, estudianteActualizado);
+    }
+
+    @GetMapping("/buscar")
+    public List<Estudiante> buscarEstudiante(@RequestParam String nombre){
+        return estudianteService.buscarPorNombre(nombre);
     }
 }

@@ -9,28 +9,39 @@ import jakarta.persistence.Id;
 
 public class Estudiante {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String email;
     private Integer edad;
+    private String telefono;
 
     public Estudiante() {
     }
 
-    public Estudiante(Long id, String nombre, String email, int edad) {
+
+    public Estudiante(Long id, String nombre, String email, String telefono, Integer edad) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.edad = edad;
+        this.telefono = telefono;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Long getId() {
