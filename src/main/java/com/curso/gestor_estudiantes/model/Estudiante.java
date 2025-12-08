@@ -5,15 +5,29 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 @Entity
 
 public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+    @NotBlank(message = "El nombre no puede estar vacío")
+    @Size(min = 2, message = "El nombre debe tener al menos 2 caracteres")
     private String nombre;
+
+    @NotBlank(message = "El email no puede estar vacío")
     private String email;
+
+    @Min(value = 18, message = "La edad mínima es 18 años")
     private Integer edad;
+
+    @NotBlank(message = "El telefono no puede estar vacío")
     private String telefono;
 
     public Estudiante() {
