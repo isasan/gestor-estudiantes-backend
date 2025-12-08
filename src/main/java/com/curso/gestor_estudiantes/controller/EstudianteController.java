@@ -2,6 +2,7 @@ package com.curso.gestor_estudiantes.controller;
 
 import com.curso.gestor_estudiantes.model.Estudiante;
 import com.curso.gestor_estudiantes.service.EstudianteService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class EstudianteController {
 
     //Post crear
     @PostMapping
-    public Estudiante crear(@RequestBody Estudiante estudiante) {
+    public Estudiante crear(@Valid @RequestBody Estudiante estudiante) {
         return estudianteService.crear(estudiante);
     }
 
@@ -51,7 +52,7 @@ public class EstudianteController {
 
     //Actualizar por ID
     @PutMapping("/{id}")
-    public Estudiante actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante estudianteActualizado) {
+    public Estudiante actualizarEstudiante(@PathVariable Long id, @Valid @RequestBody Estudiante estudianteActualizado) {
         return estudianteService.actualizar(id, estudianteActualizado);
     }
 
