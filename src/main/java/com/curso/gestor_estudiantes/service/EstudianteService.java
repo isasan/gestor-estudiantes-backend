@@ -44,6 +44,7 @@ public class EstudianteService {
         existente.setNombre(nuevo.getNombre());
         existente.setEmail(nuevo.getEmail());
         existente.setEdad(nuevo.getEdad());
+        existente.setTelefono(nuevo.getTelefono());
 
         return repository.save(existente);
     }
